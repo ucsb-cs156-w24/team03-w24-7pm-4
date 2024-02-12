@@ -23,9 +23,11 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
     const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
     // Stryker disable next-line Regex
+    // eslint-disable-next-line
     const url_regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i;
 
     // Stryker disable next-line Regex
+    // eslint-disable-next-line
     const email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     return (

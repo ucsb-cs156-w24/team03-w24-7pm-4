@@ -54,10 +54,8 @@ describe("ArticlesForm tests", () => {
         await screen.findByTestId("ArticlesForm-explanation");
         await screen.findByTestId("ArticlesForm-dateAdded");
 
-        const titleField = screen.getByTestId("ArticlesForm-title");
         const emailField = screen.getByTestId("ArticlesForm-email");
         const urlField = screen.getByTestId("ArticlesForm-url");
-        const explanationField = screen.getByTestId("ArticlesForm-explanation");
         const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
