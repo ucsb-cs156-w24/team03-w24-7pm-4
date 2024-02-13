@@ -36,4 +36,4 @@ const menuItemReviewFixtures = {
 };
 
 
-export { ucsbDatesFixtures };
+export { menuItemReviewFixtures };
