@@ -22,7 +22,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
     // Stryker disable next-line Regex
     const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
-
+    // {errors.requestTime?.type === 'pattern' && 'Request Time must be in iso format, e.g. YYYY-mm-ddTHH:MM:SS'}
     return (
 
         <Form onSubmit={handleSubmit(submitAction)}>
@@ -55,7 +55,6 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.requestTime && 'Request Time is required.'}
-                            //// {errors.requestTime?.type === 'pattern' && 'Request Time must be in iso format, e.g. YYYY-mm-ddTHH:MM:SS'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
