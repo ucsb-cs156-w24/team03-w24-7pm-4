@@ -6,7 +6,6 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { act } from 'react-dom/test-utils';
 import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
@@ -143,11 +142,9 @@ describe("UCSBOrganizationEditPage tests", () => {
         expect(inactiveField).not.toBeChecked();
         expect(submitButton).toBeInTheDocument();
 
-        act(() => {
-          fireEvent.change(orgField, { target: { value: 'testCode' } });
-          fireEvent.change(translationShortField, { target: { value: 'test 2' } });
-          fireEvent.change(orgTranslationField, { target: { value: "test 2" } });
-        });
+        fireEvent.change(orgField, { target: { value: 'testCode' } });
+        fireEvent.change(translationShortField, { target: { value: 'test 2' } });
+        fireEvent.change(orgTranslationField, { target: { value: "test 2" } });
 
         fireEvent.click(submitButton);
 
