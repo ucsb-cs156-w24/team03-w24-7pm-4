@@ -107,4 +107,29 @@ describe("UCSBDiningCommonsMenuItem tests", () => {
         });
     });
 
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        render(
+            <Router  >
+                <UCSBDiningCommonsMenuItemForm submitAction={mockSubmitAction} />
+            </Router>
+        );
+        await screen.findByTestId(`${testId}-diningCommonsCode`);
+
+        const diningCommonsCodeField = screen.getByTestId(`${testId}-diningCommonsCode`);
+        const nameField = screen.getByTestId(`${testId}-name`);
+        const stationField = screen.getByTestId(`${testId}-station`);
+        const submitButton = screen.getByTestId(`${testId}-submit`);
+
+        fireEvent.change(diningCommonsCodeField, { target: { value: 'Portola' } });
+        fireEvent.change(nameField, { target: { value: 'Rice' } });
+        fireEvent.change(stationField, { target: { value: 'Rice Station' } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+    });
 });
