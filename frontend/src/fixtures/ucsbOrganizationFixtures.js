@@ -10,7 +10,7 @@ const ucsbOrganizationFixtures = {
             "orgCode": "CS",
             "orgTranslationShort": "Computer Science",
             "orgTranslation": "Department of Computer Science",
-            "inactive": false
+            "inactive": true
         },
         {
             "orgCode": "ECE",

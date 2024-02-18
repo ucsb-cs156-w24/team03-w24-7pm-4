@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 
 export default function UCSBOrganizationEditPage({storybook=false}) {
   let { orgCode } = useParams();
-  console.log(orgCode);
   const { data: ucsbOrganization, _error, _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
@@ -37,6 +36,7 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
   });
 
   const onSuccess = (ucsbOrganization) => {
+    console.log("HERE");
     toast(`UCSBOrganization Updated - id: ${ucsbOrganization.orgCode} name: ${ucsbOrganization.orgTranslation}`);
   }
 

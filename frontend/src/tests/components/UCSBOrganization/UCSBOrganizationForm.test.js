@@ -76,10 +76,14 @@ describe("UCSBOrganizationForm tests", () => {
         fireEvent.click(submitButton);
 
         // Check for required validation messages
+        const orgTranslationShort = await screen.findByText(/Organization Translation Short is required/);
+        const orgTranslation = await screen.findByText(/Organization Translation is required/);
+
+        expect(orgTranslationShort).toBeInTheDocument();
+        expect(orgTranslation).toBeInTheDocument();
+
         await waitFor(() => {
             expect(screen.getByText(/Organization Code is required/)).toBeInTheDocument();
-            expect(screen.getByText(/Organization Translation Short is required/)).toBeInTheDocument();
-            expect(screen.getByText(/Organization Translation is required/)).toBeInTheDocument();
         });
     });
 

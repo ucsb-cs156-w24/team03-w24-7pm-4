@@ -1,81 +1,123 @@
-import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
+
+import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable"
 import { QueryClient, QueryClientProvider } from "react-query";
-import { MemoryRouter, useNavigate } from "react-router-dom";
-import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
+import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures"; // You need to create or adapt this fixture to match your data
+import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
+
 
 const mockedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedNavigate
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockedNavigate
 }));
 
-describe("UCSBOrganizationTable tests", () => {
+describe("UserTable tests", () => {
   const queryClient = new QueryClient();
-  const testIdPrefix = "UCSBOrganizationTable";
 
-  const expectedHeaders = ["Organization Code", "Organization Translation Short", "Organization Translation", "Inactive"];
-  const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
+  test("Has the expected column headers and content for ordinary user", () => {
 
-  test("renders empty table correctly", () => {
-    // arrange
-    const currentUser = currentUserFixtures.adminUser;
+    const currentUser = currentUserFixtures.userOnly;
 
-    // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationTable organizations={[]} currentUser={currentUser} testIdPrefix={testIdPrefix} />
+          <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
+
     );
 
-    // assert
+    const expectedHeaders = ["Organization Code", "Organization Translation Short", "Organization Translation", "Inactive"];
+    const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
+    const testId = "UCSBOrganizationTable";
+    
     expectedHeaders.forEach((headerText) => {
-      expect(screen.getByText(headerText)).toBeInTheDocument();
+      const header = screen.getByText(headerText);
+      expect(header).toBeInTheDocument();
     });
 
     expectedFields.forEach((field) => {
-      expect(screen.queryByTestId(`${testIdPrefix}-cell-row-0-col-${field}`)).not.toBeInTheDocument();
+      const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
+      expect(header).toBeInTheDocument();
     });
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("CS");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("ECE");
+
+    const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    expect(editButton).not.toBeInTheDocument();
+
+    const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    expect(deleteButton).not.toBeInTheDocument();
+
   });
 
-  test("Has the expected column headers and content for admin user", () => {
-    // arrange
+  test("Has the expected colum headers and content for adminUser", () => {
+
     const currentUser = currentUserFixtures.adminUser;
 
-    // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} testIdPrefix={testIdPrefix} />
+          <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
+
     );
 
-    // assert
+    const expectedHeaders = ["Organization Code", "Organization Translation Short", "Organization Translation", "Inactive"];
+    const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
+    const testId = "UCSBOrganizationTable";
+
     expectedHeaders.forEach((headerText) => {
-      expect(screen.getByText(headerText)).toBeInTheDocument();
-    });
-
-    expectedFields.forEach((field, index) => {
-      const header = screen.getByTestId(`${testIdPrefix}-cell-row-0-col-${field}`);
+      const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
-      // You can add more specific checks for each field here if necessary
     });
 
-    // Check for Edit and Delete buttons for admin users
-    const editButton = screen.getByTestId(`${testIdPrefix}-cell-row-0-col-Edit-button`);
+    expectedFields.forEach((field) => {
+      const header = screen.getByTestId(`${testId}-cell-row-0-col-${field}`);
+      expect(header).toBeInTheDocument();
+    });
+
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("CS");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("ECE");
+
+    const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = screen.getByTestId(`${testIdPrefix}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
+
   });
 
-  // Add more tests similar to the ones in RestaurantTable for different user roles, interactions like clicking edit/delete buttons, etc.
+  test("Edit button navigates to the edit page for admin user", async () => {
+
+    const currentUser = currentUserFixtures.adminUser;
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+
+    );
+
+    await waitFor(() => { expect(screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-orgCode`)).toHaveTextContent("CS"); });
+
+    const editButton = screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-Edit-button`);
+    expect(editButton).toBeInTheDocument();
+    
+    fireEvent.click(editButton);
+
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsborganization/edit/CS'));
+
+  });
+  
 });
+
