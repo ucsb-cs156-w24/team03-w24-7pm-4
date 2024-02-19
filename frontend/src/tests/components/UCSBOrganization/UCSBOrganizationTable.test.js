@@ -92,7 +92,6 @@ describe("UserTable tests", () => {
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
-
   });
 
   test("Edit button navigates to the edit page for admin user", async () => {
@@ -117,6 +116,23 @@ describe("UserTable tests", () => {
 
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsborganization/edit/CS'));
 
+  });
+  test("Displays 'Yes' for true and 'No' for false in the Inactive column", () => {
+    const currentUser = currentUserFixtures.userOnly;
+  
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable organizations={ucsbOrganizationFixtures.threeOrganizations} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+  
+    const inactiveCell = screen.getByTestId(`UCSBOrganizationTable-cell-row-0-col-inactive`);
+    expect(inactiveCell).toHaveTextContent("Yes"); 
+
+    const inactiveCell2 = screen.getByTestId(`UCSBOrganizationTable-cell-row-1-col-inactive`);
+    expect(inactiveCell2).toHaveTextContent("No"); 
   });
   
 });

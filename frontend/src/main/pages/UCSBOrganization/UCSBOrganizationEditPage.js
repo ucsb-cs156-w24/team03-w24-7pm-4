@@ -36,7 +36,6 @@ export default function UCSBOrganizationEditPage({storybook=false}) {
   });
 
   const onSuccess = (ucsbOrganization) => {
-    console.log("HERE");
     toast(`UCSBOrganization Updated - id: ${ucsbOrganization.orgCode} name: ${ucsbOrganization.orgTranslation}`);
   }
 

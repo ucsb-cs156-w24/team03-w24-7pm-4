@@ -6,7 +6,7 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-
+import * as backendUtils from 'main/utils/useBackend';
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -81,7 +81,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
         fireEvent.change(orgCodeInput, { target: { value: '123' } });
         fireEvent.change(orgTranslationShortInput, { target: { value: 'Test Org Short' } });
         fireEvent.change(orgTranslationInput, { target: { value: 'Test Organization' } });
-        fireEvent.click(inactiveInput);  // Assuming this is a checkbox
+        fireEvent.click(inactiveInput);
         fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
@@ -91,4 +91,5 @@ describe("UCSBOrganizationCreatePage tests", () => {
         expect(mockToast).toBeCalledWith(`New UCSBOrganization Created - orgCode: ${ucsbOrganization.orgCode} inactive: ${ucsbOrganization.inactive}`);
         expect(mockNavigate).toBeCalledWith({ "to": "/ucsborganization" });
     });
+    
 });

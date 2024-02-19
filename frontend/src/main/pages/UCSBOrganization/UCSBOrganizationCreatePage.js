@@ -24,7 +24,8 @@ export default function UCSBOrganizationCreatePage() {
   const mutation = useBackendMutation(
     objectToAxiosParams,
     { onSuccess },
-    ["/api/ucsborganization/all"]
+     // Stryker disable next-line all : don't test internal caching of React Query
+    ["/api/ucsborganizations/all"]
   );
 
   const { isSuccess } = mutation;

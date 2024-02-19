@@ -31,6 +31,7 @@ describe("UCSBOrganizationForm tests", () => {
         expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).toBeInTheDocument();
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslationShort`)).toBeInTheDocument();
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslation`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).not.toBeDisabled();
     });
     
 
@@ -47,6 +48,7 @@ describe("UCSBOrganizationForm tests", () => {
         expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).toHaveValue(ucsbOrganizationFixtures.oneOrganization.orgCode);
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslationShort`)).toHaveValue(ucsbOrganizationFixtures.oneOrganization.orgTranslationShort);
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslation`)).toHaveValue(ucsbOrganizationFixtures.oneOrganization.orgTranslation);
+        expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).toBeDisabled();
     });
 
     test("that navigate(-1) is called when Cancel is clicked", async () => {
