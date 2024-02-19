@@ -6,7 +6,6 @@ import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import * as backendUtils from 'main/utils/useBackend';
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -91,5 +90,5 @@ describe("UCSBOrganizationCreatePage tests", () => {
         expect(mockToast).toBeCalledWith(`New UCSBOrganization Created - orgCode: ${ucsbOrganization.orgCode} inactive: ${ucsbOrganization.inactive}`);
         expect(mockNavigate).toBeCalledWith({ "to": "/ucsborganization" });
     });
-    
+
 });
