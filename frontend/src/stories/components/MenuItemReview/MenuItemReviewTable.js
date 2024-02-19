@@ -6,7 +6,7 @@ import { rest } from "msw";
 
 export default {
     title: 'components/MenuItemReview/MenuItemReviewTable',
-    component: MenuItemReview=Table
+    component: MenuItemReviewTable
 };
 
 const Template = (args) => {
