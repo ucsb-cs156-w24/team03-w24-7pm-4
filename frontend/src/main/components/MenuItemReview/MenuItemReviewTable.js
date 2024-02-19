@@ -6,7 +6,7 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/menuItemRev
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function MenuItemReviewTable({ dates, currentUser }) {
+export default function MenuItemReviewTable({ menuItemReview, currentUser }) {
 
     const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ export default function MenuItemReviewTable({ dates, currentUser }) {
     } 
 
     return <OurTable
-        data={dates}
+        data={menuItemReview}
         columns={columns}
         testid={"MenuItemReviewTable"}
     />;
