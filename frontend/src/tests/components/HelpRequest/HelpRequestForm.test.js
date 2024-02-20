@@ -90,7 +90,7 @@ describe("HelpRequestForm tests", () => {
         expect(screen.getByText(/teamId is required./)).toBeInTheDocument();
         expect(screen.getByText(/explanation is required./)).toBeInTheDocument();
         expect(screen.getByText(/This field is required./)).toBeInTheDocument();
-        expect(screen.getByText(/requesterEmail is required./)).toBeInTheDocument();
+        expect(screen.getByText(/requester email should be in correct format./)).toBeInTheDocument();
         expect(screen.getByText(/tableOrBreakoutRoom is required./)).toBeInTheDocument();
 
     });
