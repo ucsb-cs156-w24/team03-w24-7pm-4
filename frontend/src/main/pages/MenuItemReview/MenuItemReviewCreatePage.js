@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function UCSBDatesCreatePage({storybook=false}) {
+export default function MenuItemReviewCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (menuItemReview) => ({
     url: "/api/menuitemreview/post",
