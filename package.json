@@ -1,0 +1,23 @@
+{
+  "name": "team03-w24-7pm-4",
+  "version": "1.0.0",
+  "description": "Instructions: <https://ucsb-cs156.github.io/f23/lab/team03.html>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ucsb-cs156-w24/team03-w24-7pm-4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ucsb-cs156-w24/team03-w24-7pm-4/issues"
+  },
+  "homepage": "https://github.com/ucsb-cs156-w24/team03-w24-7pm-4#readme"
+}
