@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-w24/team03-w24-7pm-4
 owner: ucsb-cs156-w24
 repo_name: team03-w24-7pm-4
-pull_requests: [{"author":{"id":"U_kgDOB3EM8A","is_bot":false,"login":"notaryaman","name":""},"headRefName":"as-indexpagedcmenuitems","number":89,"title":"Index Page for UCSBDiningCommonsMenuItem plus tests and stories","url":"https://github.com/ucsb-cs156-w24/team03-w24-7pm-4/pull/89"},{"author":{"id":"U_kgDOB3EM8A","is_bot":false,"login":"notaryaman","name":""},"headRefName":"as-createpagesmenuitems","number":88,"title":"Create Page for UCSBDiningCommonsMenuItem plus tests and stories","url":"https://github.com/ucsb-cs156-w24/team03-w24-7pm-4/pull/88"}]
+pull_requests: [{"author":{"id":"U_kgDOB3EM8A","is_bot":false,"login":"notaryaman","name":""},"headRefName":"as-createpagesmenuitems","number":88,"title":"Create Page for UCSBDiningCommonsMenuItem plus tests and stories","url":"https://github.com/ucsb-cs156-w24/team03-w24-7pm-4/pull/88"}]
