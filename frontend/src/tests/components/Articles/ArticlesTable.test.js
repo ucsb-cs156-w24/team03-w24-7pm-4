@@ -122,7 +122,7 @@ describe("UserTable tests", () => {
   test("Delete button calls delete callback", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
-
+    const testId = "ArticlesTable";
     // act - render the component
     render(
       <QueryClientProvider client={queryClient}>
