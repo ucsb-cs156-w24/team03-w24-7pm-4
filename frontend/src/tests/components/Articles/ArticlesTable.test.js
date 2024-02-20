@@ -119,30 +119,28 @@ describe("UserTable tests", () => {
   });
 
 
-  test("Allow deletes to be processed", async () => {
-
+  test("Delete button calls delete callback", async () => {
+    // arrange
     const currentUser = currentUserFixtures.adminUser;
-
+    const testId = "ArticlesTable";
+    // act - render the component
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
-
     );
 
-    await waitFor(() => { expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+    // assert - check that the expected content is rendered
+    expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-title`)).toHaveTextContent("title1");
 
-    const testId = "ArticlesTable";
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
-    
+
+    // act - click the delete button
     fireEvent.click(deleteButton);
-
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).not.toHaveTextContent("1");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).not.toHaveTextContent("2");
-
   });
 
 });

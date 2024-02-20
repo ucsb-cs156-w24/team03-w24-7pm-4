@@ -11,10 +11,6 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
-import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
-import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
-
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
@@ -23,10 +19,10 @@ import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenu
 import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
 import UCSBDiningCommonsMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
 
-
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
+
 function App() {
   const { data: currentUser } = useCurrentUser();
 
@@ -68,41 +64,10 @@ function App() {
             </>
           )
         }
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/menuitemreview" element={<MenuItemReviewIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_ADMIN") && (
-            <>
-              <Route exact path="/menuitemreview/edit/:id" element={<MenuItemReviewEditPage />} />
-              <Route exact path="/menuitemreview/create" element={<MenuItemReviewCreatePage />} />
-            </>
-          )
-        }
-        
          {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/placeholder" element={<PlaceholderIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_USER") && (
-            <>
-              <Route exact path="/ucsborganization" element={<UCSBOrganizationIndexPage />} />
-            </>
-          )
-        }
-        {
-          hasRole(currentUser, "ROLE_ADMIN") && (
-            <>
-              <Route exact path="/ucsborganization/edit/:orgCode" element={<UCSBOrganizationEditPage />} />
-              <Route exact path="/ucsborganization/create" element={<UCSBOrganizationCreatePage />} />
             </>
           )
         }
@@ -117,7 +82,6 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
-
               <Route exact path="/diningcommonsmenuitem" element={<UCSBDiningCommonsMenuItemIndexPage />} />
             </>
           )
