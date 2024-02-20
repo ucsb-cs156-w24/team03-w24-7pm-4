@@ -76,14 +76,14 @@ describe("MenuItemReviewCreatePage tests", () => {
             expect(screen.getByTestId("MenuItemReviewForm-stars")).toBeInTheDocument();
         });
 
-        const itemIdfield = screen.getByTestId("MenuItemReviewForm-itemId");
+        const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
         const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
         const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
         const starsField = screen.getByTestId("MenuItemReviewForm-stars");
         const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
         const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
-        fireEvent.change(itemIdfield, { target: { value: 5 } });
+        fireEvent.change(itemIdField, { target: { value: 5 } });
         fireEvent.change(reviewerEmailField, { target: { value: 'wesley@coolperson.edu' } });
         fireEvent.change(dateReviewedField, { target: { value: '2022-02-02T00:00' } });
         fireEvent.change(starsField, { target: { value: 3 } });
