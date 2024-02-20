@@ -53,6 +53,7 @@ describe("HelpRequestForm tests", () => {
             </Router>
         );
         await screen.findByTestId("HelpRequestForm-requestTime");
+        await screen.findByTestId("HelpRequestForm-requesterEmail");
         // await screen.findByTestId("HelpRequestForm-solved");
         const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail")
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
@@ -62,7 +63,7 @@ describe("HelpRequestForm tests", () => {
         const solvedField = screen.getByTestId("HelpRequestForm-solved");
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-        fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
+        fireEvent.change(requesterEmailField, { target: { value: '|test@ucsb.edu' } });
         fireEvent.change(requestTimeField, { target: { value: 'bad-input' } });
         fireEvent.change(teamIdField, { target: { value: 'bad-input' } });
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: 'bad-input' } });
@@ -72,6 +73,7 @@ describe("HelpRequestForm tests", () => {
         
         // await screen.findByText(/This field is required./);
         await screen.findByText(/Request Time is required./);
+        await screen.findByText(/requester email should be in correct format./);
     });
 
     test("Correct Error messages on missing input", async () => {
@@ -94,6 +96,25 @@ describe("HelpRequestForm tests", () => {
         expect(screen.getByText(/tableOrBreakoutRoom is required./)).toBeInTheDocument();
 
     });
+    test("Correct Error messages on invalid email address", async () => {
+
+        render(
+            <Router  >
+                <HelpRequestForm />
+            </Router>
+        );
+        
+        await screen.findByTestId("HelpRequestForm-requesterEmail");
+        // await screen.findByTestId("HelpRequestForm-solved");
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail")
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+        
+        fireEvent.change(requesterEmailField, { target: { value: 'test@ucsb.edu|' } });
+        fireEvent.click(submitButton);
+        
+        await screen.findByText(/requester email should be in correct format./);
+
+    });
 
     test("No Error messages on good input", async () => {
 
@@ -106,7 +127,7 @@ describe("HelpRequestForm tests", () => {
             </Router>
         );
         await screen.findByTestId("HelpRequestForm-requestTime");
-
+        await screen.findByTestId("HelpRequestForm-requesterEmail");
         const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail")
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
         const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
@@ -126,6 +147,7 @@ describe("HelpRequestForm tests", () => {
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
         expect(screen.queryByText(/Request Time is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/requester email should be in correct format./)).not.toBeInTheDocument();
 
     });
 
