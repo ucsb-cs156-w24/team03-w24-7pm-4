@@ -85,11 +85,11 @@ describe("RecommendationRequestEditPage tests", () => {
             });
             axiosMock.onPut('/api/RecommendationRequest').reply(200, {
                 id: "17",
-                requesterEmail: "sample_student@ucsb.edu",
-                professorEmail: "sample_professor@ucsb.edu",
-                explanation: "for company",
-                dateRequested: "2023-10-02T01:00",
-                dateNeeded: "2022-11-01T03:00",
+                requesterEmail: "student@ucsb.edu",
+                professorEmail: "professor@ucsb.edu",
+                explanation: "PhD program at Harvard",
+                dateRequested: "2024-02-02T12:15",
+                dateNeeded: "2024-02-02T12:15",
                 done: "true"
             });
         });
@@ -167,27 +167,27 @@ describe("RecommendationRequestEditPage tests", () => {
 
             expect(submitButton).toBeInTheDocument();
 
-            fireEvent.change(requesterEmailField, { target: { value: "sample_student@ucsb.edu" } })
-            fireEvent.change(professorEmailField, { target: { value: "sample_professor@ucsb.edu" } })
-            fireEvent.change(explanationField, { target: { value: "for company" } })
-            fireEvent.change(dateRequestedField, { target: { value: "2023-10-02T01:00" } })
-            fireEvent.change(dateNeededField, { target: { value: "2022-11-01T03:00" } })
+            fireEvent.change(requesterEmailField, { target: { value: "student@ucsb.edu" } })
+            fireEvent.change(professorEmailField, { target: { value: "professor@ucsb.edu" } })
+            fireEvent.change(explanationField, { target: { value: "PhD program at Harvard" } })
+            fireEvent.change(dateRequestedField, { target: { value: "2024-02-02T12:15" } })
+            fireEvent.change(dateNeededField, { target: { value: "2024-02-02T12:15" } })
             fireEvent.change(doneField, { target: { value: true } })
 
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("RecommendationRequest Updated - id: 17 requester email: sample_student@ucsb.edu");
+            expect(mockToast).toBeCalledWith("RecommendationRequest Updated - id: 17 requester email: student@ucsb.edu");
             expect(mockNavigate).toBeCalledWith({ "to": "/RecommendationRequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                requesterEmail: "sample_student@ucsb.edu",
-                professorEmail: "sample_professor@ucsb.edu",
-                explanation: "for company",
-                dateRequested: "2023-10-02T01:00",
-                dateNeeded: "2022-11-01T03:00",
+                requesterEmail: "student@ucsb.edu",
+                professorEmail: "professor@ucsb.edu",
+                explanation: "PhD program at Harvard",
+                dateRequested: "2024-02-02T12:15",
+                dateNeeded: "2024-02-02T12:15",
                 done: "true"
             })); // posted object
 
