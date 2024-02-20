@@ -44,7 +44,7 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/recommendationrequests", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/RecommendationRequest", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -74,7 +74,7 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/recommendationrequests", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/RecommendationRequest", { params: { id: 17 } }).reply(200, {
                 id: 17,
                 requesterEmail: "student@ucsb.edu",
                 professorEmail: "professor@ucsb.edu",
@@ -83,7 +83,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 dateNeeded: "2024-02-02T12:15",
                 done: "false"
             });
-            axiosMock.onPut('/api/recommendationrequests').reply(200, {
+            axiosMock.onPut('/api/RecommendationRequest').reply(200, {
                 id: "17",
                 requesterEmail: "sample_student@ucsb.edu",
                 professorEmail: "sample_professor@ucsb.edu",
@@ -178,7 +178,7 @@ describe("RecommendationRequestEditPage tests", () => {
 
             await waitFor(() => expect(mockToast).toBeCalled());
             expect(mockToast).toBeCalledWith("RecommendationRequest Updated - id: 17 requester email: sample_student@ucsb.edu");
-            expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequests" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/RecommendationRequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
@@ -193,8 +193,6 @@ describe("RecommendationRequestEditPage tests", () => {
 
         });
 
-       
+
     });
 });
-
-

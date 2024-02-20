@@ -63,7 +63,7 @@ describe("RecommendationRequestCreatePage tests", () => {
             done: "false"
         };
 
-        axiosMock.onPost("/api/recommendationrequests/post").reply( 202, recommendationRequest );
+        axiosMock.onPost("/api/RecommendationRequest/post").reply( 202, recommendationRequest );
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -109,7 +109,7 @@ describe("RecommendationRequestCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 17 requester email: student@ucsb.edu");
-        expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequests" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/RecommendationRequest" });
     });
 
 
