@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/HelpRequest/HelpRequestIndexPage.js</title>
+    <title>Code coverage report for pages/RecommendationRequest/RecommendationRequestIndexPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/HelpRequest</a> HelpRequestIndexPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/RecommendationRequest</a> RecommendationRequestIndexPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -106,7 +106,8 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,15 +150,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
 &nbsp;
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import HelpRequestTable from 'main/components/HelpRequest/HelpRequestTable';
+import RecommendationRequestTable from 'main/components/RecommendationRequest/RecommendationRequestTable';
 import { Button } from 'react-bootstrap';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser';
 &nbsp;
-export default function HelpRequestIndexPage() {
+export default function RecommendationRequestIndexPage() {
 &nbsp;
   const currentUser = useCurrentUser();
 &nbsp;
@@ -166,10 +168,10 @@ export default function HelpRequestIndexPage() {
         return (
             &lt;Button
                 variant="primary"
-                href="/helprequest/create"
+                href="/RecommendationRequest/create"
                 style={{ float: "right" }}
             &gt;
-                Create HelpRequest 
+                Create RecommendationRequest
             &lt;/Button&gt;
         )
     } 
@@ -178,8 +180,8 @@ export default function HelpRequestIndexPage() {
   const { data: requests, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/helprequest/all"],
-      { method: "GET", url: "/api/helprequest/all" },
+      ["/api/RecommendationRequest/all"],
+      { method: "GET", url: "/api/RecommendationRequest/all" },
       []
     );
 &nbsp;
@@ -187,12 +189,13 @@ export default function HelpRequestIndexPage() {
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         {createButton()}
-        &lt;h1&gt;Help Request&lt;/h1&gt;
-        &lt;HelpRequestTable requests={requests} currentUser={currentUser} /&gt;
+        &lt;h1&gt;RecommendationRequest&lt;/h1&gt;
+        &lt;RecommendationRequestTable requests={requests} currentUser={currentUser} /&gt;
       &lt;/div&gt;
     &lt;/BasicLayout&gt;
   )
-}</pre></td></tr></table></pre>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
